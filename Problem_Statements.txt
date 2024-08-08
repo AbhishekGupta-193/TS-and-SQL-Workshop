@@ -1,0 +1,14 @@
+Typescript :
+1. Feedback for product and display all the review of perticular product and  average rating of that product 
+2. Place order for particular product and display the recipt of that order
+3. Search the product from the list and after the display, delete the record from the list
+ 
+ 
+Postgresql- (Primary key and foreign key relation needed) :
+1. Product and Feedback table to store feedback for product and fetch the average  rating product wise
+2. Add order in order table for product and write the query in function to return all the order placed in
+   given date range
+3. Delete and update the product from the table and put the deleted record in the backup table  using trigger
+
+
+ASSIGNED TO ME : Typescript(2) , Postgresql(3) 
