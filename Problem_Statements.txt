@@ -1,6 +1,6 @@
 Typescript :
-1. Feedback for product and display all the review of perticular product and  average rating of that product 
-2. Place order for particular product and display the recipt of that order
+1. Feedback for product and display all the review of particular product and  average rating of that product 
+2. Place order for particular product and display the receipt of that order
 3. Search the product from the list and after the display, delete the record from the list
  
  
