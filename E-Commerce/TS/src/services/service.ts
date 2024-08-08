@@ -3,28 +3,30 @@
 import { Product } from "../model/product";
 import { Ordered_Item } from "../model/ordered_item";
 import { Receipt } from "../model/receipt";
+import * as readlineSync from 'readline-sync';
+
 
 //FUNCTIONALITY - ADD PRODUCT 
 const Products_List:Product[]=[];
-function add_products(product:Product):void{
+export function add_products(product:Product):void{
     Products_List.push(product);
     console.log("Product Added Successfully...");
     console.log("The final Products List is: ",Products_List);
 }
 
-const product1=new Product("Polo TShirt",600,10,["Good","Worth it","Not Bad"],4.1);
-add_products(product1);
-const product2=new Product("Cotton Trouser",950,6,["Great fit","Best","Awesome"],4.9);
-add_products(product2);
-const product3=new Product("Rainy Slipper",300,18,["Worse","Defective","Average"],2.6);
-add_products(product3);
-const product4=new Product("Rainy Slipper",700,8,["Comfortable","Durable","Good"],4.6);
-add_products(product4);
+// const product1=new Product("Polo TShirt",600,10,["Good","Worth it","Not Bad"],4.1);
+// add_products(product1);
+// const product2=new Product("Cotton Trouser",950,6,["Great fit","Best","Awesome"],4.9);
+// add_products(product2);
+// const product3=new Product("Rainy Slipper",300,18,["Worse","Defective","Average"],2.6);
+// add_products(product3);
+// const product4=new Product("Rainy Slipper",700,8,["Comfortable","Durable","Good"],4.6);
+// add_products(product4);
 
 
 //FUNCTIONALITY - PLACE ORDER FOR PRODUCT 
 const Order_List:Ordered_Item[]=[];
-function place_order(commodity:string,quantity:number):void{
+export function place_order(commodity:string,quantity:number):void{
     let flag:boolean=false;
     Products_List.forEach((element)=>{
         if(element.name==commodity && element.avg_rating>4.0 && element.in_stock>=quantity){
@@ -42,15 +44,13 @@ function place_order(commodity:string,quantity:number):void{
     })
     if(!flag)console.log(`Sorry, ${commodity} is currently out of stock...`);
 }
-
-place_order("Casual TShirt",3);
-place_order("Rainy Slipper",2);
-console.log("The Products Ordered are : ",Order_List);
+// place_order('Casual TShirt',3);
+// place_order("Rainy Slipper",2);
 
 
 //FUNCTIONALITY - DISPLAY RECEIPT FOR ORDERS
 const Receipt_List:Receipt[]=[];
-function display_receipt():void{
+export function display_receipt():void{
     Order_List.forEach((element)=>{
         let _name=element.name;
         let _price=element.price;
@@ -61,6 +61,6 @@ function display_receipt():void{
     console.log("Here you can view the receipt for your order : ",Receipt_List);
 }
  
-display_receipt();
+// display_receipt();
 
 
