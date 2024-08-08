@@ -1,7 +1,9 @@
 // 2. Place order for particular product and display the receipt of that order
 
 import { Product } from "../model/product";
+import { Ordered_Item } from "../model/ordered_item";
 
+//FUNCTIONALITY - ADD PRODUCT 
 const Products_List:Product[]=[];
 function add_products(product:Product):void{
     Products_List.push(product);
@@ -19,20 +21,29 @@ const product4=new Product("Rainy Slipper",700,8,["Comfortable","Durable","Good"
 add_products(product4);
 
 
-const Order_List:Product[]=[];
+//FUNCTIONALITY - PLACE ORDER FOR PRODUCT 
+const Order_List:Ordered_Item[]=[];
 function place_order(commodity:string,quantity:number):void{
     let flag:boolean=false;
     Products_List.forEach((element)=>{
         if(element.name==commodity && element.avg_rating>4.0 && element.in_stock>=quantity){
-            Order_List.push(element);
+            element.in_stock-=quantity;
+
+            let _name=element.name;
+            let _price=element.price;
+            let _quantity=quantity;
+            const ordered_item=new Ordered_Item(_name,_price,_quantity);
+            Order_List.push(ordered_item);
+
             flag=true;
             console.log(`Order for ${element.name} is placed...`);
         }
     })
     if(!flag)console.log(`Sorry, ${commodity} is currently out of stock...`);
 }
+
 place_order("Casual TShirt",3);
-place_order("Rainy Slipper",1);
+place_order("Rainy Slipper",2);
 console.log("The Products Ordered are : ",Order_List);
 
 

@@ -2,6 +2,8 @@
 // 2. Place order for particular product and display the receipt of that order
 Object.defineProperty(exports, "__esModule", { value: true });
 const product_1 = require("../model/product");
+const receipt_1 = require("../model/receipt");
+const ordered_item_1 = require("../model/ordered_item");
 const Products_List = [];
 function add_products(product) {
     Products_List.push(product);
@@ -21,7 +23,12 @@ function place_order(commodity, quantity) {
     let flag = false;
     Products_List.forEach((element) => {
         if (element.name == commodity && element.avg_rating > 4.0 && element.in_stock >= quantity) {
-            Order_List.push(element);
+            element.in_stock -= quantity;
+            let _name = element.name;
+            let _price = element.price;
+            let _quantity = quantity;
+            const ordered_item = new ordered_item_1.Ordered_Item(_name, _price, _quantity);
+            Order_List.push(ordered_item);
             flag = true;
             console.log(`Order for ${element.name} is placed...`);
         }
@@ -30,5 +37,17 @@ function place_order(commodity, quantity) {
         console.log(`Sorry, ${commodity} is currently out of stock...`);
 }
 place_order("Casual TShirt", 3);
-place_order("Rainy Slipper", 1);
+place_order("Rainy Slipper", 2);
 console.log("The Products Ordered are : ", Order_List);
+const Receipt_List = [];
+function display_receipt() {
+    Order_List.forEach((element) => {
+        let _name = element.name;
+        let _price = element.price;
+        let _quantity = element.quantity;
+        const receipt_item = new receipt_1.Receipt(_name, _price, _quantity);
+        Receipt_List.push(receipt_item);
+    });
+    console.log("Here you can view the receipt for your order : ", Receipt_List);
+}
+display_receipt();
