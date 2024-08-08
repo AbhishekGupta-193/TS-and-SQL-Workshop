@@ -2,6 +2,7 @@
 
 import { Product } from "../model/product";
 import { Ordered_Item } from "../model/ordered_item";
+import { Receipt } from "../model/receipt";
 
 //FUNCTIONALITY - ADD PRODUCT 
 const Products_List:Product[]=[];
@@ -45,5 +46,21 @@ function place_order(commodity:string,quantity:number):void{
 place_order("Casual TShirt",3);
 place_order("Rainy Slipper",2);
 console.log("The Products Ordered are : ",Order_List);
+
+
+//FUNCTIONALITY - DISPLAY RECEIPT FOR ORDERS
+const Receipt_List:Receipt[]=[];
+function display_receipt():void{
+    Order_List.forEach((element)=>{
+        let _name=element.name;
+        let _price=element.price;
+        let _quantity=element.quantity;
+        const receipt_item=new Receipt(_name,_price,_quantity);
+        Receipt_List.push(receipt_item);
+    })
+    console.log("Here you can view the receipt for your order : ",Receipt_List);
+}
+ 
+display_receipt();
 
 
